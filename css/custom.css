@@ -1,0 +1,205 @@
+/* ==========================================================================
+   Custom overrides — Gustavo Lanza Ambiental
+   Carregado depois de style.css/responsive.css. Não altera os arquivos
+   originais do template (Econet), apenas ajusta conteúdo específico do
+   cliente: logotipo, imagens, badges e botões novos (CTA / WhatsApp).
+   ========================================================================== */
+
+/* Âncoras de menu não ficam escondidas atrás do header fixo/sticky */
+#topo, #sobre, #servicos, #diferenciais, #processo, #segmentos, #licencas, #faq, #contato {
+  scroll-margin-top: 110px;
+}
+
+/* ---------- Logo (marca + texto) no header ---------- */
+.site-logo-mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.site-logo-icon {
+  max-width: 48px !important;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.site-logo-text {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--title-font);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.15;
+  color: var(--theme-color-white);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.site-logo-text small {
+  font-family: var(--title-font);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--theme-color2);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.main-header.scrolled .site-logo-text,
+.sticky-header .site-logo-text {
+  color: var(--heading-color);
+}
+.sticky-header .site-logo-icon {
+  max-width: 38px !important;
+  width: 38px;
+  height: 38px;
+}
+.mobile-menu .nav-logo img {
+  max-width: 48px;
+  border-radius: 50%;
+}
+
+/* ---------- Bloco "Sobre": avatares e contador ---------- */
+.about-section-classic .about-autor-box .autor-img-box .author-image img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--theme-color4);
+}
+.about-section-classic .about-autor-box .about-counter {
+  max-width: 150px;
+  text-align: right;
+}
+
+/* ---------- Logo completo (rodapé) ---------- */
+.footer-widget-content.social .logo img {
+  max-width: 130px;
+  width: 130px;
+  height: auto;
+  border-radius: 14px;
+}
+
+/* ---------- Insights: imagens do cliente em proporção 4:5, sem corte ---------- */
+.latest-blog-section-classic .single-blog-box .blog-thumb {
+  aspect-ratio: 4 / 5;
+}
+.latest-blog-section-classic .single-blog-box .blog-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ---------- Faixa de atuação: badges de texto no lugar de logos de parceiros ---------- */
+.brand-area-classic .band-active .brand-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+.brand-badge-text {
+  display: inline-block;
+  font-family: var(--title-font);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--heading-color);
+  text-align: center;
+}
+
+/* ---------- Diferenciais: título + descrição empilhados (evita coluna estreita) ---------- */
+.why-choose-section-one.classic .why-choose-box .single-choose-box {
+  flex-direction: column;
+}
+.why-choose-section-one.classic .why-choose-box .single-choose-box .choose-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.why-choose-section-one.classic .why-choose-box .single-choose-box .title h2 {
+  white-space: normal;
+}
+.why-choose-section-one.classic .why-choose-box .single-choose-box .choose-desc {
+  width: 100%;
+  margin-top: 16px;
+  padding-left: 106px;
+}
+.why-choose-section-one.classic .why-choose-box .single-choose-box .choose-desc p {
+  width: 100%;
+  float: none;
+}
+@media (max-width: 767.98px) {
+  .why-choose-section-one.classic .why-choose-box .single-choose-box .choose-desc {
+    padding-left: 0;
+  }
+}
+
+/* ---------- Botões de CTA na seção de contato (rodapé) ---------- */
+.footer-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 30px;
+}
+.footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  border-radius: 40px;
+  font-family: var(--title-font);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+.footer-cta-btn--primary {
+  background: var(--theme-color2);
+  color: var(--text-color-bg-theme-color2);
+}
+.footer-cta-btn--primary:hover {
+  background: var(--theme-color-white);
+  color: var(--heading-color);
+}
+.footer-cta-btn--secondary {
+  background: transparent;
+  color: var(--theme-color-white);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.footer-cta-btn--secondary:hover {
+  background: var(--theme-color-white);
+  color: var(--heading-color);
+  border-color: var(--theme-color-white);
+}
+
+/* ---------- Botão flutuante do WhatsApp ---------- */
+.whatsapp-float {
+  position: fixed;
+  right: 20px;
+  bottom: 90px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  transition: transform 0.25s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  color: #fff;
+}
+
+/* ---------- FAQ (carrossel reaproveitando o layout de depoimentos) ---------- */
+.testimonial-section-classic .single-testi-box .testi-autor-box .testi-autor-content .autor-title {
+  font-size: 20px;
+  line-height: 1.35;
+}
+.testimonial-section-classic .single-testi-box .testi-desc p {
+  margin-top: 6px;
+}
