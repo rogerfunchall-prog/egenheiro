@@ -173,26 +173,76 @@
 }
 
 /* ---------- Botão flutuante do WhatsApp ---------- */
-.whatsapp-float {
+.whatsapp-float-wrapper {
   position: fixed;
   right: 20px;
-  bottom: 90px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #25d366;
-  color: #fff;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  z-index: 999;
-  transition: transform 0.25s ease;
+  text-decoration: none;
 }
-.whatsapp-float:hover {
-  transform: scale(1.08);
-  color: #fff;
+
+.whatsapp-float-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  animation: whatsapp-breathe 2s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+.whatsapp-float-btn svg {
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes whatsapp-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.whatsapp-pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.4);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  animation: whatsapp-pulse-expand 2.5s ease-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.whatsapp-pulse-ring--delayed {
+  animation-delay: 1.25s;
+}
+
+@keyframes whatsapp-pulse-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+
+.whatsapp-float-wrapper:hover .whatsapp-float-btn {
+  transform: scale(1.1);
+  animation: none;
 }
 
 /* ---------- FAQ (carrossel reaproveitando o layout de depoimentos) ---------- */
@@ -202,4 +252,357 @@
 }
 .testimonial-section-classic .single-testi-box .testi-desc p {
   margin-top: 6px;
+}
+
+/* ---------- Segmentos: carrossel 4 por vez com transição ---------- */
+.project-section-classic {
+  overflow: visible;
+  padding-bottom: 120px;
+}
+
+.segmentos-marquee-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.segmentos-marquee-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.segmentos-card {
+  flex-shrink: 0;
+  width: calc((100% - 72px) / 4);
+}
+
+.segmentos-card .project-box-item {
+  margin-bottom: 0;
+}
+
+.segmentos-card .project-thumb {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.segmentos-card .project-thumb figure {
+  margin: 0;
+}
+
+.segmentos-card .project-thumb figure img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+.segmentos-card .project-thumb .project-content {
+  position: absolute !important;
+  z-index: 2 !important;
+  bottom: 12px !important;
+  left: 12px !important;
+  right: 12px !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: normal !important;
+  padding: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 8px !important;
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+  transition: opacity 0.4s ease, transform 0.4s ease !important;
+  margin: 0 !important;
+}
+
+.segmentos-card:hover .project-thumb .project-content {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.segmentos-card .project-thumb .project-content h4 {
+  color: var(--theme-color-white) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  margin: 0 auto !important;
+  background: var(--theme-color2) !important;
+  width: auto !important;
+  padding: 4px 16px !important;
+  height: auto !important;
+  line-height: 1.6 !important;
+  border-radius: 20px !important;
+  text-align: center !important;
+  display: inline-block !important;
+}
+
+.segmentos-card .project-thumb .project-content h3 {
+  color: var(--theme-color-white) !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  word-break: break-word !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Navegação do carrossel */
+.segmentos-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 30px;
+}
+.segmentos-nav button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--theme-color2);
+  background: transparent;
+  color: var(--theme-color2);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.segmentos-nav button:hover {
+  background: var(--theme-color2);
+  color: #fff;
+}
+
+/* Indicadores (dots) */
+.segmentos-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.segmentos-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(12, 35, 24, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.segmentos-dots .dot.active {
+  background: var(--theme-color2);
+  transform: scale(1.2);
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .segmentos-card {
+    width: calc((100% - 48px) / 3);
+  }
+  .segmentos-card .project-thumb figure img {
+    height: 320px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .segmentos-card {
+    width: calc((100% - 24px) / 2);
+  }
+  .segmentos-card .project-thumb figure img {
+    height: 260px;
+  }
+  .segmentos-card .project-thumb .project-content h3 {
+    font-size: 15px;
+  }
+  .segmentos-marquee-track {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .segmentos-card {
+    width: 100%;
+  }
+  .segmentos-card .project-thumb figure img {
+    height: 240px;
+  }
+}
+
+/* ---------- Serviços: alinhamento do conteúdo sobreposto ---------- */
+.service-section-classic .single-service-box .service-thumb .service-content {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 20px 0 20px 30px !important;
+  height: auto !important;
+  min-height: 100px !important;
+}
+.service-section-classic .single-service-box .service-thumb .service-content .service-title {
+  line-height: 1.25 !important;
+  margin: 0 !important;
+  font-size: 22px !important;
+  flex: 1 !important;
+}
+.service-section-classic .single-service-box .service-thumb .service-content .service-icon {
+  flex-shrink: 0 !important;
+  margin-top: 0 !important;
+  position: relative !important;
+  top: auto !important;
+}
+
+/* ---------- Esteira de Serviços (donations): contraste, equal heights e alinhamento ---------- */
+
+/* Equal heights: linha de cards com mesma altura */
+.donations-section-classic .row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: stretch !important;
+}
+.donations-section-classic .row > [class*="col-"] {
+  display: flex !important;
+}
+
+/* Card como flex column para empurrar botão para o fundo */
+.donations-section-classic .single-donations-box {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+/* Conteúdo interno cresce para preencher espaço */
+.donations-section-classic .single-donations-box .donations-content {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+}
+
+/* Título do card */
+.donations-section-classic .single-donations-box .donations-content h2 {
+  text-align: center !important;
+  font-size: 22px !important;
+  line-height: 1.3 !important;
+  margin-bottom: 30px !important;
+}
+
+/* Barra de progresso */
+.donations-section-classic .single-donations-box .donations-content .skills {
+  margin-bottom: 20px !important;
+}
+
+/* Texto descritivo: alto contraste e legibilidade */
+.donations-section-classic .single-donations-box .donations-content .donate-detail {
+  text-align: center !important;
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+.donations-section-classic .single-donations-box .donations-content .donate-detail p {
+  color: #333333 !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+}
+
+/* Botão sempre na base */
+.donations-section-classic .single-donations-box .donations-content .donations-btn {
+  margin-top: auto !important;
+  padding-top: 20px !important;
+}
+.donations-section-classic .single-donations-box .donations-content .donations-btn a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* ---------- Diferenciais: alinhamento dos itens ---------- */
+.why-choose-section-one.classic .why-choose-box .single-choose-box {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+.why-choose-section-one.classic .why-choose-box .single-choose-box .choose-wrap {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 16px !important;
+}
+.why-choose-section-one.classic .why-choose-box .single-choose-box .choose-wrap .title h2 {
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  white-space: normal !important;
+}
+.why-choose-section-one.classic .why-choose-box .single-choose-box .choose-desc {
+  width: 100% !important;
+  margin-top: 12px !important;
+  padding-left: 90px !important;
+}
+.why-choose-section-one.classic .why-choose-box .single-choose-box .choose-desc p {
+  margin: 0 !important;
+  line-height: 1.6 !important;
+}
+@media (max-width: 767.98px) {
+  .why-choose-section-one.classic .why-choose-box .single-choose-box .choose-desc {
+    padding-left: 0 !important;
+  }
+}
+
+/* ---------- Insights (blog): alinhamento dos títulos ---------- */
+.latest-blog-section-classic .single-blog-box .blog-content {
+  text-align: center !important;
+}
+.latest-blog-section-classic .single-blog-box .blog-content .blog-title {
+  line-height: 1.35 !important;
+  margin-bottom: 10px !important;
+}
+.latest-blog-section-classic .single-blog-box .blog-content .blog-title a {
+  display: block !important;
+}
+.latest-blog-section-classic .single-blog-box .blog-content .blog-autor {
+  text-align: center !important;
+}
+
+/* ---------- Footer CTA: alinhamento dos botões ---------- */
+.footer-cta-buttons {
+  align-items: center !important;
+}
+
+/* ---------- Formulário de contato no footer ---------- */
+.footer-contact-form input::placeholder,
+.footer-contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.footer-contact-form input:focus,
+.footer-contact-form textarea:focus {
+  border-color: var(--theme-color2) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* ---------- Responsividade: serviços em telas menores ---------- */
+@media (max-width: 767.98px) {
+  .service-section-classic .single-service-box .service-thumb .service-content {
+    width: calc(100% - 20px) !important;
+    left: 10px !important;
+    right: 10px !important;
+    padding: 16px !important;
+  }
+  .service-section-classic .single-service-box .service-thumb .service-content .service-title {
+    font-size: 18px !important;
+  }
 }

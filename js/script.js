@@ -533,6 +533,8 @@ var DREAMIT = {};
 			spaceBetween: 30,
 			loop: true,
 			autoplay: false,
+			slidesOffsetBefore: 40,
+			slidesOffsetAfter: 40,
 			breakpoints: {
 			1920: {
 				slidesPerView: 3,
